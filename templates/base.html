@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TudoJá - Protótipo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>TudoJá (protótipo)</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Início</a> |
+      <a href="{{ url_for('usuarios.registro') }}">Cadastrar Usuário</a> |
+      <a href="{{ url_for('usuarios.login') }}">Login</a> |
+      <a href="{{ url_for('lojas.registro_loja') }}">Cadastrar Loja</a> |
+      <a href="{{ url_for('lojas.listar_lojas') }}">Listar Lojas</a>
+      {% if session.get('usuario_nome') %}
+        | <strong>{{ session.get('usuario_nome') }}</strong>
+        | <a href="{{ url_for('usuarios.logout') }}">Sair</a>
+      {% endif %}
+    </nav>
+    <hr>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for categoria, msg in messages %}
+            <li><strong>{{ categoria }}</strong>: {{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </header>
+
+  <main>
+    {% block conteudo %}{% endblock %}
+  </main>
+
+  <footer>
+    <hr>
+    <p>Protótipo - TudoJá</p>
+  </footer>
+</body>
+</html>

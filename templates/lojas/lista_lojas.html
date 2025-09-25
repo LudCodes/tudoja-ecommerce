@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+  <h2>Lista de Lojas</h2>
+  {% if lojas %}
+    <ul>
+      {% for loja in lojas %}
+        <li><strong>{{ loja.nome }}</strong> — {{ loja.descricao or '' }} (Proprietário ID: {{ loja.proprietario_id }})</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Sem lojas cadastradas ainda.</p>
+  {% endif %}
+{% endblock %}

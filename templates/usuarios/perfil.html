@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+  <h2>Perfil de {{ usuario.nome }}</h2>
+  <p>Email: {{ usuario.email }}</p>
+  <p>Cadastrado em: {{ usuario.criado_em }}</p>
+
+  <h3>Suas lojas</h3>
+  {% if lojas %}
+    <ul>
+      {% for loja in lojas %}
+        <li>{{ loja.nome }} — {{ loja.endereco or 'sem endereço' }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Você não tem lojas cadastradas.</p>
+  {% endif %}
+  <a href="{{ url_for('lojas.registro_loja') }}">Cadastrar nova loja</a>
+{% endblock %}
