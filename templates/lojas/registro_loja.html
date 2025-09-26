@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+  <h2>Registrar Loja</h2>
+  <form method="post">
+    <label>Nome da loja: <input type="text" name="nome" required></label><br>
+    <label>Descrição: <textarea name="descricao"></textarea></label><br>
+    <label>Endereço: <input type="text" name="endereco"></label><br>
+    <label>Telefone: <input type="text" name="telefone"></label><br>
+    <button type="submit">Cadastrar Loja</button>
+  </form>
+{% endblock %}
