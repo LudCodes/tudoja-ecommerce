@@ -1,19 +1,15 @@
-from main import db
-from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
+# cadastrar_usuario/models.py
+from django.db import models
+from django.contrib.auth import get_user_model
 
-class Usuario(db.Model):
-    __tablename__ = 'usuarios'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    senha_hash = db.Column(db.String(200), nullable=False)
-    criado_em = db.Column(db.DateTime, default=datetime.utcnow)
+User = get_user_model()
 
-    lojas = db.relationship('Loja', backref='proprietario', lazy=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    phone = models.CharField("Telefone", max_length=20, blank=True)
+    address = models.CharField("Endereço", max_length=255, blank=True)
+    is_store_owner = models.BooleanField("É lojista?", default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-    def set_senha(self, senha):
-        self.senha_hash = generate_password_hash(senha)
-
-    def checar_senha(self, senha):
-        return check_password_hash(self.senha_hash, senha)
+    def __str__(self):
+        return f"{self.user.username} - perfil"
