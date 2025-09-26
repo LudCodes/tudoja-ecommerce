@@ -9,7 +9,4 @@ Projeto desenvolvido por estudantes da turma GPE17M60233_2 de Qualidade de Softw
 # Integrantes
 Icaro Vinnicius D. Monteiro UC23102651 
 Ludmila Alves Coutinho UC23100128
-Joelma Giovanna B. F. Rocha UC23200743
-...
-...
-
+Joelma Giovanna B. F. Rocha UC2320074
