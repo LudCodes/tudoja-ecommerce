@@ -13,6 +13,17 @@
 
 ## 🚧 Tarefas em andamento:
 
+1)  Cadastrar usuário e Cadastrar Loja - *Ludmila* 
+
+2) Cadastrar produtos (Caso for loja) - *Giovanna*
+
+3) Listar Produtos (Caso for cliente) - *Giovanna*
+
+4)  Adicionar produto ao carrinho (caso for cliente) - *Ícaro*
+
+5)  Comprar produto (Caso for cliente) - *Sabrina* 
+
+6) CRIAR MENU DE OPÇÕES NA MAIN (testar com as funcionalidades). *todos*
 # ------------------------------------------------------------------------------------------------------------------------
 
 ## ❗ Problemas encontrados:
