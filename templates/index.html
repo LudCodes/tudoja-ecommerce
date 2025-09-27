@@ -1,10 +1,8 @@
-{% extends 'base.html' %}
-{% block conteudo %}
-  <h2>Menu de Teste (Todos)</h2>
-  <p>Use o menu acima para navegar e testar as funcionalidades.</p>
-  <ul>
-    <li>Cadastrar usuário / login (sua responsabilidade)</li>
-    <li>Cadastrar loja (sua responsabilidade)</li>
-    <li>Outras funcionalidades: criação/listagem de produtos, carrinho, compra — cada membro faz a sua função em branches separados.</li>
-  </ul>
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5 text-center">
+  <h1>Bem-vinda ao TudoJá</h1>
+  <p>Plataforma colaborativa de bairro — apresente seu projeto aqui.</p>
+  <a href="{% url 'cadastro' %}" class="btn btn-primary">Cadastre-se</a>
+</div>
 {% endblock %}

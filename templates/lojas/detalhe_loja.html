@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Cadastrar/Editar Loja</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Salvar loja</button>
+  </form>
+</div>
+{% endblock %}
