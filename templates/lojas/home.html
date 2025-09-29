@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <!-- Mensagem de boas-vindas -->
+    {% if user.is_authenticated %}
+        <div class="alert alert-info d-flex justify-content-between align-items-center mb-4">
+            <span>Bem-vindo de volta, {{ user.username }}!</span>
+            <a href="{% url 'perfil' %}" class="btn btn-sm btn-primary">Perfil</a>
+        </div>
+    {% else %}
+        <div class="alert alert-success d-flex justify-content-between align-items-center mb-4">
+            <span>Bem-vindo(a) à nossa loja!</span>
+            <a href="{% url 'register' %}" class="btn btn-sm btn-primary">Cadastrar</a>
+        </div>
+    {% endif %}
+
+    <h2>Vitrine</h2>
+
+    {% if products %}
+        <div class="row">
+            {% for p in products %}
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        {% if p.image %}
+                            <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ p.name }}</h5>
+                            <p class="card-text">{{ p.description|truncatechars:80 }}</p>
+                            <p class="card-text"><strong>R$ {{ p.price }}</strong></p>
+                            {% if p.store %}
+                                <a href="{% url 'loja_detalhe' p.store.id %}" class="btn btn-sm btn-primary">
+                                    Ver loja: {{ p.store.name }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Nenhum produto disponível no momento.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

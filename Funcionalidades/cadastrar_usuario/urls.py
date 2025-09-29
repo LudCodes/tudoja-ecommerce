@@ -1,12 +1,17 @@
-# cadastrar_usuario/urls.py
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 from . import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('cadastro/', views.register, name='cadastro'),
+    # Login personalizado
     path('login/', views.CustomLoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    # Logout usando LogoutView do Django
+    path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
+
+    # Cadastro de novo usuário
+    path('register/', views.register, name='register'),
+
+    # Perfil do usuário (requer login)
     path('perfil/', views.perfil, name='perfil'),
-    
 ]
