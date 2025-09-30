@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Cart, CartItem
-# Ajuste o caminho da importação do modelo Product
 from Funcionalidades.cadastrar_loja.models import Product
 
 @login_required
@@ -27,7 +26,7 @@ def view_cart(request):
     if cart:
         total_price = sum(item.product.price * item.quantity for item in cart.items.all())
 
-    return render(request, 'carrinho/detalhe_carrinho.html', {
+    return render(request, 'carrinho/carrinho.html', {
         'cart': cart,
         'total_price': total_price,
     })
