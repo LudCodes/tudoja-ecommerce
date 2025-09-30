@@ -25,7 +25,7 @@ O E-commerce Colaborativo de Bairro é uma plataforma online que permite que peq
 * Manutenibilidade: Código organizado seguindo boas práticas de programação, facilitando futuras alterações e expansão do sistema.
 
 # Integrantes
-* Icaro Vinnicius D. Monteiro UC23102651 | Função: Adicionar produto ao carrinho (caso for cliente)
+* Icaro Vinnicius D. Monteiro UC23102651 | Função: Adicionar produto ao carrinho (caso for cliente) | Estilização
 * Ludmila Alves Coutinho UC23100128 | Função: Cadastrar Usuário e Loja
 * Joelma Giovanna B. F. Rocha UC2320074 | Função: Criar produtos e Listar Produtos
 * Maria Sabrina Pinho dos Santos UC23102535 | Função: Comprar produto 
