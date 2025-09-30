@@ -31,4 +31,28 @@ def view_cart(request):
         'total_price': total_price,
     })
 
+@login_required
+def increment_cart_item(request, item_id):
+    """
+    Incrementa a quantidade de um item no carrinho.
+    """
+    cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+    cart_item.quantity += 1
+    cart_item.save()
+    return redirect('view_cart')
+
+@login_required
+def decrement_cart_item(request, item_id):
+    """
+    Decrementa a quantidade de um item no carrinho.
+    Se a quantidade for 1, o item é removido.
+    """
+    cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
+    else:
+        #remove o item do carrinho se for < 1
+        cart_item.delete()
+    return redirect('view_cart')
 

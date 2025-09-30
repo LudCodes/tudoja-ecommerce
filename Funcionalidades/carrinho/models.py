@@ -1,8 +1,7 @@
-# Funcionalidades/carrinho/models.py
 
 from django.db import models
 from django.conf import settings
-# Ajuste o caminho da importação do modelo Product
+
 from Funcionalidades.cadastrar_loja.models import Product
 
 class Cart(models.Model):
