@@ -5,12 +5,12 @@
 <div class="container mt-4">
 
     {% if user.is_authenticated %}
-        <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded" style="background: #1e3a8a; color: white; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded" style="background: #218838; color: white; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             <span>Bem-vindo de volta, {{ user.username }}!</span>
             <a href="{% url 'perfil' %}" class="btn btn-light btn-sm">Perfil</a>
         </div>
     {% else %}
-        <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded" style="background: #3b82f6; color: white; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded" style="background: #28a745; color: white; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             <span>Bem-vindos(as) ao primeiro e-commerce colaborativo da cidade! Entre ou cadastre-se.</span>
             <a href="{% url 'register' %}" class="btn btn-light btn-sm">Cadastrar</a>
         </div>
@@ -22,21 +22,31 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for p in products %}
                 <div class="col">
-                    <div class="card">
-                        {% if p.name == 'Pão de queijo?' %}
-                            <img src="{% static 'paodequeijonovo.jpg' %}" class="card-img-top" alt="Pão de Queijo">
-                        {% elif p.image %}
+                    <div class="card h-100">
+                        
+                        {% if p.image %}
                             <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}">
+                        {% elif p.name == 'Pão de queijo' %}
+                            <img src="{% static 'paodequeijonovo.jpg' %}" class="card-img-top" alt="Pão de Queijo">
                         {% else %}
                             <img src="https://i.imgur.com/2s09sGT.png" class="card-img-top" alt="Produto sem imagem">
                         {% endif %}
-                        <div class="card-body">
+                        
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ p.name }}</h5>
                             <p class="card-text">{{ p.description|truncatechars:80 }}</p>
                             <p class="card-text"><strong>R$ {{ p.price }}</strong></p>
-                            {% if p.store %}
-                                <a href="{% url 'loja_detalhe' p.store.id %}" class="btn btn-primary btn-sm">Ver loja: {{ p.store.name }}</a>
-                            {% endif %}
+                            
+                            <div class="mt-auto d-flex align-items-center">
+                                {% if p.store %}
+                                    <a href="{% url 'loja_detalhe' p.store.id %}" class="btn btn-primary btn-sm me-2">Ver loja: {{ p.store.name }}</a>
+                                {% endif %}
+                                
+                                <form action="{% url 'add_to_cart' p.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success btn-sm">Adicionar ao Carrinho</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
