@@ -7,16 +7,45 @@
     <title>TudoJá - E-commerce de Bairro</title>
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      /* Navbar personalizada */
+      .navbar-custom {
+        background-color: #1e3a8a; /* azul escuro */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .navbar-custom .nav-link {
+        color: white !important;
+        font-weight: 500;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        transition: color 0.3s;
+      }
+      .navbar-custom .nav-link:hover {
+        color: #a5d8ff !important; /* azul claro ao passar o mouse */
+      }
+      .navbar-custom .navbar-brand {
+        color: white;
+        font-weight: bold;
+      }
+      .navbar-custom .btn-light {
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">
-          <img src="{% static 'logo-tudoJa.png' %}" alt="Logo" style="height:40px;"/>
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+          <img src="{% static 'logo-tudoJa.png' %}" alt="Logo" style="height:40px; margin-right:8px;"/>
           TudoJá
         </a>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
             {% if request.user.is_authenticated %}
               <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Perfil</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'detalhe_loja' %}">Minha loja</a></li>
@@ -29,8 +58,8 @@
                 </form>
               </li>
             {% else %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Entrar</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Cadastrar</a></li>
+              <li class="nav-item"><a class="btn btn-light btn-sm mx-1" href="{% url 'login' %}">Entrar</a></li>
+              <li class="nav-item"><a class="btn btn-outline-light btn-sm mx-1" href="{% url 'register' %}">Cadastrar</a></li>
             {% endif %}
           </ul>
         </div>
