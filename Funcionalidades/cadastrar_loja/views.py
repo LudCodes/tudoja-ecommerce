@@ -5,6 +5,12 @@ from .models import Store, Product
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+def index(request):
+    """
+    Página inicial/portal de entrada do site.
+    """
+    return render(request, 'index.html')
+
 # ------------------------------
 # VIEWS DO DONO DA LOJA (PAINEL)
 # ------------------------------

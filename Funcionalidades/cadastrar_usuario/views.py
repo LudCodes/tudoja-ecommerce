@@ -4,8 +4,26 @@ from django.contrib.auth import login, authenticate
 from .form import UserRegisterForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
 
+class CustomLoginView(LoginView):
+    template_name = 'usuarios/login.html'
 
+    def get_success_url(self):
+        """
+        Redireciona o usuário para a página correta após o login.
+        """
+        user = self.request.user
+
+        # Verifica se o usuário tem um perfil e se é dono de loja
+        if hasattr(user, 'profile') and user.profile.is_store_owner:
+            # Se for lojista, vai para a página de detalhes da loja
+            return reverse_lazy('detalhe_loja')
+        else:
+            # Se for cliente, vai para a vitrine de produtos
+            return reverse_lazy('home')
+        
 def register(request):
     if request.method == "POST":
         user_form = UserRegisterForm(request.POST)

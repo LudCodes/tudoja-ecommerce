@@ -15,7 +15,9 @@
       body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; }
       main { min-height: 80vh; }
 
-      .navbar-custom { background: linear-gradient(90deg, #3b82f6, #1e3a8a); box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 0.8rem 1rem; }
+      /*atualizando para cores novas */
+
+      .navbar-custom { background: linear-gradient(90deg, #28a745, #218838); box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 0.8rem 1rem; }
       .navbar-custom .navbar-brand, .navbar-custom .nav-link { color: white !important; }
       .navbar-custom .navbar-brand { font-weight: 700; font-size: 1.5rem; }
       .navbar-custom .nav-link { font-weight: 500; transition: all 0.3s ease; padding: 0.5rem 1rem; border-radius: 5px; }
@@ -24,17 +26,23 @@
       .navbar-custom .btn:hover { transform: scale(1.05); }
 
       form.form-styled { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-      form.form-styled button, .btn-primary { background-color: #3b82f6; border-color: #3b82f6; font-weight: 600; padding: 0.75rem 1.5rem; transition: all 0.3s ease; }
-      form button:hover, .btn-primary:hover { background-color: #1e3a8a; border-color: #1e3a8a; transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+      
+      /* atualizando nova cor */
+      .btn-primary { background-color: #28a745; border-color: #28a745; font-weight: 600; transition: all 0.3s ease; }
+      form.form-styled button { background-color: #28a745; border-color: #28a745; font-weight: 600; padding: 0.75rem 1.5rem; transition: all 0.3s ease; }
+      
+      /* atualizando */
+      form button:hover, .btn-primary:hover { background-color: #218838; border-color: #218838; transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
       
       .card { border: none; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.3s ease; overflow: hidden; height: 100%; }
       .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
       .card-body { display: flex; flex-direction: column; }
-      .card-body .btn { margin-top: auto; }
+      
+      /*atualizando para cor verde*/
+      .card-title { font-weight: 600; color: #218838; }
+      
       .card-img-top { height: 200px; object-fit: cover; }
-      .card-title { font-weight: 600; color: #1e3a8a; }
       .card-text strong { color: #28a745; font-size: 1.2rem; }
-
     
       footer { background-color: #343a40; color: white; padding: 1.5rem 0; margin-top: 2rem; }
     </style>
@@ -42,7 +50,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
           <img src="{% static 'logo-tudoJa.png' %}" alt="Logo" style="height:40px; margin-right:10px;"/>
           TudoJá
         </a>
@@ -52,6 +60,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto align-items-center">
             {% if request.user.is_authenticated %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Vitrine</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'view_cart' %}">Carrinho</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Perfil</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'detalhe_loja' %}">Minha Loja</a></li>
               <li class="nav-item">
