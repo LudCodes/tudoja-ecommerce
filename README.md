@@ -26,7 +26,7 @@ O E-commerce Colaborativo de Bairro é uma plataforma online que permite que peq
 
 # Integrantes
 * Icaro Vinnicius D. Monteiro UC23102651 | Função: Adicionar produto ao carrinho (caso for cliente) | Estilização
-* Ludmila Alves Coutinho UC23100128 | Função: Cadastrar Usuário e Loja
+* Ludmila Alves Coutinho UC23100128 | Função: Cadastrar Usuário e Loja | Estilização
 * Joelma Giovanna B. F. Rocha UC2320074 | Função: Criar produtos e Listar Produtos
 * Maria Sabrina Pinho dos Santos UC23102535 | Função: Comprar produto 
  
