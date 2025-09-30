@@ -1,19 +1,47 @@
-<!-- templates/usuarios/cadastro_usuario.html -->
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-4">
   <h2>Cadastro de Usuário</h2>
   <form method="post">
     {% csrf_token %}
+
+    {% if user_form.non_field_errors %}
+      <div class="alert alert-danger">
+        {% for error in user_form.non_field_errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
     <div class="row">
       <div class="col-md-6">
-        {{ user_form.as_p }}
+        {% for field in user_form %}
+          <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+              <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
       </div>
       <div class="col-md-6">
-        {{ profile_form.as_p }}
+        {% for field in profile_form %}
+          <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% for error in field.errors %}
+              <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
       </div>
     </div>
     <button class="btn btn-primary" type="submit">Criar conta</button>
+    <form method="post" class="form-styled"></form>
   </form>
 </div>
 {% endblock %}

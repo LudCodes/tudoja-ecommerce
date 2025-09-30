@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
-<div class="container mt-5 text-center">
-  <h1>Bem-vinda ao TudoJá</h1>
-  <p>Plataforma colaborativa de bairro — apresente seu projeto aqui.</p>
-  <a href="{% url 'cadastro' %}" class="btn btn-primary">Cadastre-se</a>
+<div class="container text-center vh-100 d-flex flex-column justify-content-center align-items-center">
+    <img src="{% static 'logo-tudoJa.png' %}" alt="Logo TudoJá" style="height: 150px; margin-bottom: 20px;">
+    <h1 class="display-4">Bem-vindo ao TudoJá</h1>
+    <p class="lead">Sua plataforma de e-commerce colaborativo de bairro.</p>
+    <div class="mt-4">
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg mx-2">Entrar</a>
+        <a href="{% url 'register' %}" class="btn btn-secondary btn-lg mx-2">Cadastrar</a>
+    </div>
 </div>
 {% endblock %}
