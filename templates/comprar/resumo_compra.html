@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Resumo da Compra</h1>
+<p>Total: R$ {{ total|floatformat:2 }}</p>
+<ul>
+    {% for item in produtos %}
+        <li>
+            {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="100">
+            {% endif %}
+            {{ item.product.name }} - R$ {{ item.product.price|floatformat:2 }} x {{ item.quantity }}
+        </li>
+    {% empty %}
+        <li>Nenhum produto no carrinho.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
