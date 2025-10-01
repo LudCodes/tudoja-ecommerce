@@ -1,18 +1,35 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-<h1>Resumo da Compra</h1>
-<p>Total: R$ {{ total|floatformat:2 }}</p>
-<ul>
-    {% for item in produtos %}
-        <li>
-            {% if item.product.image %}
-                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="100">
-            {% endif %}
-            {{ item.product.name }} - R$ {{ item.product.price|floatformat:2 }} x {{ item.quantity }}
-        </li>
-    {% empty %}
-        <li>Nenhum produto no carrinho.</li>
-    {% endfor %}
-</ul>
+<div class="container mt-5">
+    <h2 class="mb-4">Resumo da Compra</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Itens</h5>
+            <ul class="list-group list-group-flush">
+                {% for produto in produtos %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            {% if produto.imagem %}
+                                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}" class="img-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            {% endif %}
+                            <span>{{ produto.nome }} (x{{ produto.quantidade }})</span>
+                        </div>
+                        <span>R$ {{ produto.preco|floatformat:2 }}</span>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">Nenhum produto no carrinho.</li>
+                {% endfor %}
+            </ul>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <h4>Total</h4>
+                <h4><strong>R$ {{ total|floatformat:2 }}</strong></h4>
+            </div>
+
+            <a href="{% url 'index' %}" class="btn btn-primary w-100 mt-3">Voltar para a loja</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
